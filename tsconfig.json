@@ -2,6 +2,6 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "types": ["@types/node", "@types/tailwindcss"]
+    "types": ["@types/node", "@types/tailwindcss", "vue3-openlayers"]
   }
 }

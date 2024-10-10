@@ -13,7 +13,11 @@
     />
 
     <main class="flex-grow relative overflow-hidden pt-16">
-      <MapDashboard class="absolute inset-0" />
+      <MapDashboard
+        class="absolute inset-0"
+        :show-icon-layer="true"
+        :show-sensor-tag="true"
+      />
       <GenericFilterSidebar
         v-if="showFilter && !showDashboard"
         :is-visible="showFilter && !showDashboard"
@@ -338,7 +342,6 @@ watch(showFilter, (newValue) => {
   }
 })
 </script>
-
 <style scoped>
 .top-\[calc\(4rem\+2vh\)\] {
   top: calc(4rem + 2vh);

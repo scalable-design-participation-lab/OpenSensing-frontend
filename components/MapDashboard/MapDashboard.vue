@@ -13,11 +13,14 @@
 <template>
   <div>
     <main id="main-container" />
-    <SensorTag v-if="showSensorInfo" :marker-position="markerPosition" />
+    <SensorTag
+      v-if="showSensorTag && showSensorInfo"
+      :marker-position="markerPosition"
+    />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref, watch, computed } from 'vue'
 import { MapboxLayer } from '@deck.gl/mapbox'
 import { IconLayer } from '@deck.gl/layers'
@@ -25,6 +28,16 @@ import { storeToRefs } from 'pinia'
 import { useSensorDetailStore } from '../../stores/sensorDetail'
 import { useMapStore } from '../../stores/map'
 import mapboxgl from 'mapbox-gl'
+
+interface Props {
+  showIconLayer: boolean
+  showSensorTag: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  showIconLayer: true,
+  showSensorTag: true,
+})
 
 /**
  * Mapbox access token
@@ -46,7 +59,7 @@ const { updateMapCenter } = mapStore
  * Mapbox map instance
  * @type {mapboxgl.Map}
  */
-let map
+let map: mapboxgl.Map
 
 /**
  * Position of the marker for the selected sensor
@@ -68,6 +81,8 @@ onMounted(() => loadMapDraw())
  * Adds an icon layer to the map for sensor markers
  */
 const addIconLayer = () => {
+  if (!props.showIconLayer) return
+
   const ICON_MAPPING = {
     marker: { x: 0, y: 0, width: 128, height: 128, mask: true },
   }
@@ -161,6 +176,21 @@ watch(selectedSensorId, (newId) => {
     }
   }
 })
+
+watch(
+  () => props.showIconLayer,
+  (newValue) => {
+    if (map) {
+      if (newValue) {
+        addIconLayer()
+      } else {
+        if (map.getLayer('sensor-markers')) {
+          map.removeLayer('sensor-markers')
+        }
+      }
+    }
+  }
+)
 </script>
 
 <style lang="postcss" scoped>

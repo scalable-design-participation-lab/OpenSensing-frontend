@@ -1,3 +1,5 @@
+import { accordion } from '@nuxt/ui/dist/runtime/ui.config'
+
 export default defineAppConfig({
   ui: {
     primary: 'green',
@@ -29,6 +31,33 @@ export default defineAppConfig({
           inactive: 'dark:hover:bg-gray-950/50',
         },
       },
+    },
+    accordion: {
+      wrapper: 'w-full flex flex-col',
+      container: 'w-full flex flex-col',
+      item: {
+        base: '',
+        size: 'text-sm',
+        color: 'text-gray-900 dark:text-gray-100',
+        icon: 'ms-auto transform transition-transform duration-200 flex-shrink-0',
+      },
+      transition: {
+        enterActiveClass:
+          'overflow-hidden transition-[height] duration-200 ease-out',
+        leaveActiveClass:
+          'overflow-hidden transition-[height] duration-200 ease-out',
+      },
+      default: {
+        openIcon: 'i-heroicons-chevron-down-20-solid',
+        closeIcon: '',
+        class: 'mb-1.5 w-full',
+        variant: 'soft',
+        truncate: true,
+      },
+    },
+    card: {
+      wrapper: 'bg-dark dark:bg-gray-900',
+      background: 'bg-gray-100 dark:bg-gray-900',
     },
   },
 })

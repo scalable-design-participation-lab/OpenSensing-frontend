@@ -34,9 +34,11 @@
     "vitest": "^2.1.0"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.4.3",
     "@nuxt/ui": "^2.18.4",
     "@nuxt/ui-pro": "^1.4.1",
     "@pinia/nuxt": "^0.5.1",
+    "@turf/turf": "^7.1.0",
     "chart.js": "^4.4.3",
     "d3": "^7.9.0",
     "d3-array": "^3.2.4",
@@ -48,13 +50,18 @@
     "json2csv": "^6.0.0-alpha.2",
     "lodash": "^4.17.21",
     "mapbox-gl": "^2.15.0",
+    "ol": "^10.2.1",
+    "ol-contextmenu": "^5.5.0",
+    "ol-ext": "^4.0.23",
     "parcoord-es": "^2.2.10",
     "pg": "^8.12.0",
     "pinia": "^2.1.7",
+    "turf": "^3.0.14",
     "v-calendar": "^3.1.2",
     "vue-chart-3": "^3.1.8",
     "vue-chartjs": "^5.3.1",
-    "vue-virtual-scroll-list": "^2.3.5"
+    "vue-virtual-scroll-list": "^2.3.5",
+    "vue3-openlayers": "^11.2.1"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

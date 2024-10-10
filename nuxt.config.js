@@ -1,7 +1,7 @@
 const { defineNuxtConfig } = require('nuxt/config')
 
 module.exports = defineNuxtConfig({
-  css: ['~/assets/css/tailwind.css'],
+  css: ['vue3-openlayers/dist/vue3-openlayers.css'],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -28,4 +28,5 @@ module.exports = defineNuxtConfig({
   },
 
   compatibilityDate: '2024-08-15',
+  plugins: [{ src: '~/plugins/vue3-openlayers.js', mode: 'client' }],
 })
