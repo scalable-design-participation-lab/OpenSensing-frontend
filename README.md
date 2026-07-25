@@ -127,16 +127,6 @@ The system monitors various environmental parameters:
       timestamp TIMESTAMP
     );
 
-   -- Public API keys (see "Public API" section below)
-   CREATE TABLE api_keys (
-     id SERIAL PRIMARY KEY,
-     key_hash VARCHAR NOT NULL UNIQUE,
-     label VARCHAR,
-     revoked BOOLEAN NOT NULL DEFAULT FALSE,
-     created_at TIMESTAMP NOT NULL DEFAULT now(),
-     last_used_at TIMESTAMP
-   );
-
    ```
 
 6. **Start Development Server**
@@ -267,18 +257,9 @@ yarn start
 
 ## Public API
 
-`GET /api/public/sensor-data` lets external clients pull sensor readings. It
-requires an API key and is rate-limited; all other `/api/*` endpoints above
-are unauthenticated and meant for the frontend only.
-
-**Auth:** send the key in an `x-api-key` header. Requests without a valid key
-get `401`; requests over the rate limit (60 requests/minute per key) get `429`.
-
-**Generate a key:**
-```bash
-npm run create-api-key -- "some label"
-```
-This prints the plaintext key once — save it, only its hash is stored.
+`GET /api/public/sensor-data` lets external clients pull sensor readings —
+no auth required. It's rate-limited per IP (60 requests/minute) to protect
+the database; requests over that limit get `429`.
 
 **Query params:**
 - `moduleId` (optional) - omit to get the latest snapshot across all modules
@@ -287,8 +268,7 @@ This prints the plaintext key once — save it, only its hash is stored.
 
 **Example:**
 ```bash
-curl -H "x-api-key: osk_..." \
-  "https://your-host/api/public/sensor-data?moduleId=abc123&start=2026-06-01&end=2026-07-01"
+curl "https://your-host/api/public/sensor-data?moduleId=abc123&start=2026-06-01&end=2026-07-01"
 ```
 
 ## UI Components

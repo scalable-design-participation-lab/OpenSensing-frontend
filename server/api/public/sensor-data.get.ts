@@ -7,9 +7,9 @@ const DEFAULT_LIMIT = 1000
 const MAX_LIMIT = 5000
 
 /**
- * Public, API-key-gated endpoint for pulling sensor data by moduleId.
- * Auth and rate limiting are enforced by server/middleware/public-api-auth.ts
- * for any request under /api/public/*.
+ * Public endpoint for pulling sensor data by moduleId. Rate limiting is
+ * enforced by server/middleware/public-api-rate-limit.ts for any request
+ * under /api/public/*.
  *
  * Mirrors server/api/sensor-data.js but adds a capped date range and a
  * result limit, since public callers can request arbitrary ranges.

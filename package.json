@@ -7,8 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "create-api-key": "node scripts/create-api-key.js"
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
@@ -23,7 +22,6 @@
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.20",
     "babel-eslint": "^10.1.0",
-    "dotenv": "^16.4.5",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-loader": "^4.0.2",
